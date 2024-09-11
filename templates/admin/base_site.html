@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block branding %}
+<div style="display: flex; flex-direction: row;align-items: center;">
+    <img class="logo" height="40px"   class="logo"  src= {% static 'images/wonilogo.png' %} />
+<div id="site-name" style="padding-left: 10px;"><a href="{% url 'admin:index' %}">WONI Administration</a></div>
+</div>
+
+{% endblock %}
+{% block extrastyle %}
+
+
+{% endblock %}

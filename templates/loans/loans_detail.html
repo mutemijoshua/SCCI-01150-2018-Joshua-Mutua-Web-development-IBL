@@ -1,0 +1,24 @@
+
+{% extends '_partials/base.html' %} 
+{% block title %}
+
+{% endblock%}
+
+{% load static %}
+    {%block content%}
+    <h1 class="ui header">Loan Detail</h1>
+    <div class="ui card">
+        <div class="content">
+            <div class="header">{{L.title}}</div>
+            <div class="meta">{{L.date_borrowed}}</div>
+            <div class="Amount Borrowed">
+                <p>{{L.amount_borrowed}}</p>
+            </div>
+            <div class="Balance">
+                <p>{{L.loan_balance}}</p>
+            </div>
+        </div>
+            <a href= {% url 'loanrepayment' L.pk %} class="ui button primary">Repay loan</a>
+        </div>
+    </div>
+{% endblock content %}

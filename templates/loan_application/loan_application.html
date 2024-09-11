@@ -1,0 +1,18 @@
+{% extends '_partials/base.html' %} {% block content %} {% load static %}
+
+<form class="ui form" method="post" action={% url 'loanapplication' %}>
+  {% csrf_token %}
+    <div class="ui field">
+      <label>Amount</label>
+      <input type="number" name="amount" placeholder="Enter Amount">
+    </div>
+    <div class="field">
+      <div class="ui checkbox">
+        <input type="checkbox" tabindex="0" class="hidden">
+        <label>I agree to the Terms and Conditions</label>
+      </div>
+    </div>
+    <button class="ui button" type="submit">Request Loan</button>
+  </form>
+  
+{% endblock content %}

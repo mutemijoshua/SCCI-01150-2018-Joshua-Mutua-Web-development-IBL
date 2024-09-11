@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 AUTH_USER_MODEL = "authentication.User"
+LOGIN_URL = "/authentication/login"
+
 
 
 # Application definition
@@ -44,7 +46,8 @@ INSTALLED_APPS = [
     'loan_application',
     'loan_repayment',
     'loans',
-    'shares'
+    'shares',
+    'django_daraja'
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,21 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR,'woni/static')]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# The Mpesa environment to use
+# Possible values: sandbox, production
+MPESA_ENVIRONMENT = 'sandbox'
+# Credentials for the daraja app
+MPESA_CONSUMER_KEY = 'K0GjqVP6USGncRvlAbvUIhXpVGdrQQ2C8nzJB90CdtI4swAl'
+MPESA_CONSUMER_SECRET = 'srotRXasPuxrIYlxMEcCcuO5gHTGEvuLx2HJ3rMmgADkGeWGbcBT6UJXO2V9P8dG'
+#Shortcode to use for transactions. For sandbox  use the Shortcode 1 provided on test credentials page
+MPESA_SHORTCODE = '174379'
+# Shortcode to use for Lipa na MPESA Online (MPESA Express) transactions
+MPESA_EXPRESS_SHORTCODE = '174379'
+# Type of shortcode
+MPESA_SHORTCODE_TYPE = 'paybill'
+# Lipa na MPESA Online passkey
+MPESA_PASSKEY = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919'
+# Username for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+MPESA_INITIATOR_USERNAME = 'testapi'
+# Plaintext password for initiator (to be used in B2C, B2B, AccountBalance and TransactionStatusQuery Transactions)
+MPESA_INITIATOR_SECURITY_CREDENTIAL = 'P44V3y+iBZukU4n2RsrgB4+ynK47NySpgAxvxI/VXA87gQP4oV5P634Loiwd2sjpxK/7hzuhIChGSTNi6/DJWQcty23Gc2e1D4AgbpixWmmaQe2HnPNDGMCoc3Gv6mWFEgjOM0LnkEejiRkl++5a4zZt4r4+0KHlFu9Be+tVCwttKppWo49ZZ4e7Sl0lsGhkJTQJGXHqJ9IXF66/rye0u+d5NAf56jCZ/Rc/D9WQLo060L1VcGdkQ26Q+FeEQy+nqCM3w9iXLhE8jS3dtJW0qlBjtHp/w4/InVoHXlfrbECV+SBX2ATDEJXJ14HA0tClTIEcZ3++QC7fwN3YAEmH/w=='

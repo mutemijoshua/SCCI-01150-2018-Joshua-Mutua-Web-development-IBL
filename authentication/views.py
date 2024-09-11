@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.shortcuts import render,redirect
 from validate_email import validate_email
 from django.contrib import messages
-from django.contrib.auth import authenticate,login 
+from django.contrib.auth import authenticate,login ,logout
 from .models import User
 from django.urls import reverse
-# Create your views here.
+
+
 def index(request):
 
     return render(request, 'index.html')
@@ -50,7 +51,7 @@ def register(request):
         if context['has_error'] :
                 return render(request, 'authentication/register.html', context)
 
-        User.objects.create_user(username = username, email = email, idnumber = idnumber,phonenumber=phonenumber)
+        User.objects.create_user(username = username, email = email, idnumber = idnumber,phonenumber=phonenumber,password = password2)
 
         return redirect('login')
 
@@ -65,11 +66,6 @@ def login_user(request):
         password = request.POST.get('password')
         
         user = authenticate(request,username=username ,password=password)
-        '''
-            if user and not user.is_email_verified :
-                messages.add_message(request, messages.ERROR, 'Email is not verified, please check your email inbox')
-                return render(request,'authentication/login.html', context)
-        '''
         if not user:
 
             messages.add_message(request,messages.ERROR, 'inavalid credentials')
@@ -83,4 +79,8 @@ def login_user(request):
         return redirect(reverse('home'))
     
     return render(request, 'authentication/login.html')
-# Create your views here.
+
+def logout_user(request):
+    logout (request)
+    return redirect(reverse('login'))
+

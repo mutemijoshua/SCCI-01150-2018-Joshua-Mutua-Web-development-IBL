@@ -7,4 +7,7 @@ class shares(models.Model):
     Date_purchased = models.DateTimeField(auto_now=True)
     Date_updated = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self) :
+        return str(self.owner)+'s shares'
+
 # Create your models here.

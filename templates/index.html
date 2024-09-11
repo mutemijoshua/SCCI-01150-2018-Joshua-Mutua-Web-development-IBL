@@ -6,20 +6,15 @@
 Home
 
 {% endblock %}
-
-
-
 {% load static %}
 {%block content%}
 
     <img src="{% static 'images/wonilogo.png' %}"/>
 
 
-    <h1 class="ui header"></h1>
+    <h1 class="ui header">My Loans</h1>
     
-
-
-    {% if todos %}
+    {% if L %}
     <table class="ui table">
         <thead>
             <tr>
@@ -28,63 +23,33 @@ Home
                 <th>Balance</th>
                 <th>Date Borrowed</th>
                 <th>Due Date</th>
+                <th>Actions</th>            
             </tr>
         </thead>
         <tbody>
-            {% for todo in todos %}
+            {% for loan in L %}
             <tr>
-                <td>{{todo.title}}</td>
-                <td>{{todo.description}}</td>
+                <td>{{loan.loan_status}}</td>
+                <td>{{loan.amount_borrowed}}</td>
+                <td>{{loan.loan_balance}}</td>
+                <td>{{loan.date_borrowed}}</td>
+                <td>{{loan.due_Date}}</td>
                 <td>
-                    {% if todo.is_completed%}
-
-                        YES <i class="check icon green"></i>
-                    {%else%}
-                        NO
-
-                    {% endif %}
-                </td>
-
-                <td>
-                    <a href=  {% url 'todo'  todo.pk %} class="ui button">
+                    <a href={% url 'loandetail' loan.pk %} class="ui button">
                         <i class="eye icon"></i>
                     </a>
-                    <a href={% url 'todo-edit' todo.pk %} class="ui button">
-                        <i class="pencil icon">
-
-                        </i>
-                    </a>
                 </td>
-
             </tr>
-            {%endfor%}
+            {% endfor %}
         </tbody>
-        <tfoot>
-            <tr>
-                <th>
-                    <a href="?filter=all">All {{all_count}}</a>
-                </th>
-                <th>
-                    <a href="?filter=incomplete">{{incomplete_count}} Remaining</a>
-                </th>
-                <th>
-                    <a href="?filter=complete">{{completed_count}} Completed</a>
-                </th>
-                <th>
-                    
-                </th>
-         </tr>
-        </tfoot>
     </table>
-
     {% else %}
     <div class="ui message">
         <div class="header">
             Nothing to show yet
         </div>
-        <p>you can login to access your account <a href= {% url 'login' %}>login now</a></p>
-
+        <p>you don't have existing Loans <a href= {% url 'loanapplication' %}>Request Loan now</a></p>
     </div>
     {% endif %}
-{%endblock content%}
+{% endblock content %}
     
